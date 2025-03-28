@@ -10,7 +10,6 @@ from plotly.subplots import make_subplots
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
 import datetime
-import time
 
 # Page configuration and settings
 st.set_page_config(
@@ -378,12 +377,13 @@ if stock_symbol:
             st.markdown(f"**Sector:** {sector} | **Industry:** {industry}")
         
         with col2:
-            # Fix for the Series comparison error - use scalar values
+            # Fix for the Series comparison error - use scalar values and proper formatting
             if len(stock_data) >= 2:
-                current_price = stock_data['Close'].iloc[-1]
-                prev_price = stock_data['Close'].iloc[-2]
-                price_change = float(current_price) - float(prev_price)
-                price_change_pct = (price_change / float(prev_price)) * 100
+                # Convert to scalar values
+                current_price = float(stock_data['Close'].iloc[-1])
+                prev_price = float(stock_data['Close'].iloc[-2])
+                price_change = current_price - prev_price
+                price_change_pct = (price_change / prev_price) * 100
                 
                 price_color = "green" if price_change >= 0 else "red"
                 change_symbol = "↑" if price_change >= 0 else "↓"
@@ -424,7 +424,7 @@ if stock_symbol:
             st.metric("Avg. Volume", f"{avg_volume:,.0f}")
         
         with stat_col4:
-            volatility = stock_data['Close'].pct_change().std() * 100
+            volatility = float(stock_data['Close'].pct_change().std() * 100)
             st.metric("Volatility", f"{volatility:.2f}%")
         
         with st.expander("View Historical Data Table"):
@@ -640,27 +640,27 @@ if stock_symbol:
             if future_dates is not None and future_predictions is not None:
                 st.markdown("<h3 class='section-header'>🔮 Future Price Predictions</h3>", unsafe_allow_html=True)
                 
+                # Create a new DataFrame for future predictions
                 future_df = pd.DataFrame({
                     'Date': future_dates,
-                    'Predicted Price': future_predictions
+                    'Predicted Price': [float(price) for price in future_predictions]
                 })
                 
-                # Safely calculate percentage changes for the future predictions
-                future_df['Change %'] = [0]
-                if len(future_predictions) > 1:
-                    for i in range(1, len(future_predictions)):
-                        pct_change = (future_predictions[i] / future_predictions[i-1] - 1) * 100
-                        future_df.loc[i, 'Change %'] = pct_change
+                # Calculate percentage changes
+                changes = [0.0]
+                for i in range(1, len(future_predictions)):
+                    pct = (future_predictions[i] / future_predictions[i-1] - 1) * 100
+                    changes.append(float(pct))
                 
-                # Format the dataframe for display
-                future_df_display = future_df.copy()
-                future_df_display['Predicted Price'] = future_df_display['Predicted Price'].apply(lambda x: f"${x:.2f}")
-                future_df_display['Change %'] = future_df_display['Change %'].apply(lambda x: f"{x:+.2f}%")
+                future_df['Change %'] = changes
                 
-                st.dataframe(
-                    future_df_display,
-                    use_container_width=True
-                )
+                # Create a display version with formatted values
+                future_display = pd.DataFrame()
+                future_display['Date'] = future_df['Date'].dt.strftime('%Y-%m-%d')
+                future_display['Predicted Price'] = [f"${price:.2f}" for price in future_df['Predicted Price']]
+                future_display['Change %'] = [f"{change:+.2f}%" for change in future_df['Change %']]
+                
+                st.dataframe(future_display, use_container_width=True)
                 
                 # Add disclaimer
                 st.info("⚠️ Disclaimer: These predictions are based on historical data and mathematical models. They should not be used as the sole basis for investment decisions.")
