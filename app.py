@@ -260,8 +260,15 @@ def plot_stock_data(df):
         row=1, col=1
     )
     
-    # Add volume bars
-    colors = ['red' if row['Open'] > row['Close'] else 'green' for _, row in df.iterrows()]
+    # Add volume bars - Fix for the comparison error
+    # Create a list of colors based on numeric comparison
+    colors = []
+    for idx in range(len(df)):
+        if float(df['Open'].iloc[idx]) > float(df['Close'].iloc[idx]):
+            colors.append('red')
+        else:
+            colors.append('green')
+    
     fig.add_trace(
         go.Bar(
             x=df.index,
