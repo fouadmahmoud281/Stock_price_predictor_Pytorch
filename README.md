@@ -58,19 +58,22 @@ It is designed to demonstrate how PyTorch can be applied to real-world financial
      ```bash
     streamlit run app.py
 4. Open the provided URL in your browser to interact with the app.
-🚀 Usage
-Enter Stock Symbol : Provide a valid stock symbol (e.g., AAPL for Apple).
-Set Date Range : Choose a start and end date for historical data.
-Train Model : The app will fetch data, train a linear regression model, and display predictions.
-Explore Results : View charts comparing actual vs. predicted prices and inspect model parameters.
-🎨 Customization
-Modify Styling
-Edit the styles.css file to change the app's appearance (e.g., colors, fonts, layout).
-Adjust Model Parameters
-Modify the learning rate, number of epochs, or model architecture in app.py.
-Add Features
-Extend the app with advanced models like LSTM or transformer-based architectures.
-🤝 Contributing
+
+## 🚀 Usage
+1-Enter Stock Symbol : Provide a valid stock symbol (e.g., AAPL for Apple).
+2-Set Date Range : Choose a start and end date for historical data.
+3-Train Model : The app will fetch data, train a linear regression model, and display predictions.
+4-Explore Results : View charts comparing actual vs. predicted prices and inspect model parameters.
+
+## 🎨 Customization
+1-Modify Styling
+2-Edit the styles.css file to change the app's appearance (e.g., colors, fonts, layout).
+3-Adjust Model Parameters
+4-Modify the learning rate, number of epochs, or model architecture in app.py.
+5-Add Features
+6-Extend the app with advanced models like LSTM or transformer-based architectures.
+
+## 🤝 Contributing
 We welcome contributions! To contribute:
 
 Fork this repository.
@@ -80,10 +83,10 @@ Push to the branch (git push origin feature/YourFeatureName).
 Open a pull request.
 Please ensure your code adheres to the project's style guidelines and includes appropriate documentation.
 
-📜 License
+## 📜 License
 This project is licensed under the MIT License . See the LICENSE file for details.
 
-📧 Contact
+## 📧 Contact
 For questions or feedback, feel free to reach out:
 
 Email: fouadmahmoud281@example.com
