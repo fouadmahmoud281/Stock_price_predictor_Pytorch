@@ -42,14 +42,16 @@ def local_css(file_name):
         """, unsafe_allow_html=True)
 
 # Try to load custom CSS
-local_css("styles.css")
+try:
+    local_css("styles.css")
+except:
+    pass
 
 # App header
 st.markdown("<h1 class='main-header'>📈 Advanced Stock Price Predictor</h1>", unsafe_allow_html=True)
 st.markdown("<p class='sub-header'>Predict stock prices using machine learning models and historical data.</p>", unsafe_allow_html=True)
 
 # Sidebar configuration
-st.sidebar.image("https://img.icons8.com/color/96/000000/stock-market.png", width=80)
 st.sidebar.markdown("<h2 style='color: #FF9800;'>📊 Configuration</h2>", unsafe_allow_html=True)
 
 # Stock selection
@@ -137,7 +139,6 @@ st.sidebar.markdown(
 )
 
 # Helper functions
-@st.cache_data(ttl=3600)  # Cache data for 1 hour
 def fetch_stock_data(symbol, start, end):
     """Fetch stock data from Yahoo Finance with caching"""
     return yf.download(symbol, start=start, end=end)
@@ -377,17 +378,22 @@ if stock_symbol:
             st.markdown(f"**Sector:** {sector} | **Industry:** {industry}")
         
         with col2:
-            current_price = stock_data['Close'].iloc[-1]
-            prev_price = stock_data['Close'].iloc[-2]
-            price_change = current_price - prev_price
-            price_change_pct = (price_change / prev_price) * 100
-            
-            price_color = "green" if price_change >= 0 else "red"
-            change_symbol = "↑" if price_change >= 0 else "↓"
-            
-            st.markdown(f"#### Current Price")
-            st.markdown(f"<span style='color:{price_color}; font-size:24px; font-weight:bold;'>${current_price:.2f}</span>", unsafe_allow_html=True)
-            st.markdown(f"<span style='color:{price_color};'>{change_symbol} ${abs(price_change):.2f} ({price_change_pct:.2f}%)</span>", unsafe_allow_html=True)
+            # Fix for the Series comparison error - use scalar values
+            if len(stock_data) >= 2:
+                current_price = stock_data['Close'].iloc[-1]
+                prev_price = stock_data['Close'].iloc[-2]
+                price_change = float(current_price) - float(prev_price)
+                price_change_pct = (price_change / float(prev_price)) * 100
+                
+                price_color = "green" if price_change >= 0 else "red"
+                change_symbol = "↑" if price_change >= 0 else "↓"
+                
+                st.markdown(f"#### Current Price")
+                st.markdown(f"<span style='color:{price_color}; font-size:24px; font-weight:bold;'>${current_price:.2f}</span>", unsafe_allow_html=True)
+                st.markdown(f"<span style='color:{price_color};'>{change_symbol} ${abs(price_change):.2f} ({price_change_pct:.2f}%)</span>", unsafe_allow_html=True)
+            else:
+                st.markdown("#### Current Price")
+                st.markdown("Insufficient data to calculate price change")
         
         with col3:
             st.markdown("#### Trading Period")
@@ -405,11 +411,18 @@ if stock_symbol:
         
         stat_col1, stat_col2, stat_col3, stat_col4 = st.columns(4)
         with stat_col1:
-            st.metric("Highest Price", f"${stock_data['High'].max():.2f}", f"{((stock_data['High'].max() / stock_data['Close'].iloc[0]) - 1) * 100:.1f}%")
+            highest_price = float(stock_data['High'].max())
+            initial_price = float(stock_data['Close'].iloc[0])
+            st.metric("Highest Price", f"${highest_price:.2f}", f"{((highest_price / initial_price) - 1) * 100:.1f}%")
+        
         with stat_col2:
-            st.metric("Lowest Price", f"${stock_data['Low'].min():.2f}", f"{((stock_data['Low'].min() / stock_data['Close'].iloc[0]) - 1) * 100:.1f}%")
+            lowest_price = float(stock_data['Low'].min())
+            st.metric("Lowest Price", f"${lowest_price:.2f}", f"{((lowest_price / initial_price) - 1) * 100:.1f}%")
+        
         with stat_col3:
-            st.metric("Avg. Volume", f"{stock_data['Volume'].mean():,.0f}")
+            avg_volume = float(stock_data['Volume'].mean())
+            st.metric("Avg. Volume", f"{avg_volume:,.0f}")
+        
         with stat_col4:
             volatility = stock_data['Close'].pct_change().std() * 100
             st.metric("Volatility", f"{volatility:.2f}%")
@@ -521,7 +534,7 @@ if stock_symbol:
                     
                     # Update loss chart periodically
                     if (epoch + 1) % 50 == 0 or epoch == epochs - 1:
-                        fig, ax = plt.figure(figsize=(10, 4)), plt.axes()
+                        fig, ax = plt.subplots(figsize=(10, 4))
                         ax.plot(losses)
                         ax.set_xlabel('Epoch')
                         ax.set_ylabel('Loss')
@@ -629,22 +642,24 @@ if stock_symbol:
                 
                 future_df = pd.DataFrame({
                     'Date': future_dates,
-                    'Predicted Price': future_predictions,
-                    'Change %': [0] + [(future_predictions[i] / future_predictions[i-1] - 1) * 100 for i in range(1, len(future_predictions))]
+                    'Predicted Price': future_predictions
                 })
                 
-                # Format the dataframe
-                future_df['Predicted Price'] = future_df['Predicted Price'].map('${:,.2f}'.format)
-                future_df['Change %'] = future_df['Change %'].map('{:+.2f}%'.format)
+                # Safely calculate percentage changes for the future predictions
+                future_df['Change %'] = [0]
+                if len(future_predictions) > 1:
+                    for i in range(1, len(future_predictions)):
+                        pct_change = (future_predictions[i] / future_predictions[i-1] - 1) * 100
+                        future_df.loc[i, 'Change %'] = pct_change
+                
+                # Format the dataframe for display
+                future_df_display = future_df.copy()
+                future_df_display['Predicted Price'] = future_df_display['Predicted Price'].apply(lambda x: f"${x:.2f}")
+                future_df_display['Change %'] = future_df_display['Change %'].apply(lambda x: f"{x:+.2f}%")
                 
                 st.dataframe(
-                    future_df,
-                    use_container_width=True,
-                    column_config={
-                        "Date": st.column_config.DateColumn("Date", format="YYYY-MM-DD"),
-                        "Predicted Price": st.column_config.TextColumn("Predicted Price"),
-                        "Change %": st.column_config.TextColumn("Change %"),
-                    }
+                    future_df_display,
+                    use_container_width=True
                 )
                 
                 # Add disclaimer
