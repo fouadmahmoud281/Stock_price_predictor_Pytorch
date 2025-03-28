@@ -1,0 +1,38 @@
+/* General Styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f9f9f9;
+}
+
+/* Sidebar Styling */
+.stSidebar {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Buttons */
+button {
+    background-color: #4CAF50 !important;
+    border: none !important;
+    color: white !important;
+    padding: 10px 20px !important;
+    border-radius: 5px !important;
+    cursor: pointer !important;
+}
+
+button:hover {
+    background-color: #45a049 !important;
+}
+
+/* Progress Bar */
+div[data-testid="stProgress"] > div > div {
+    background-color: #FF9800 !important;
+}
+
+/* Error Messages */
+.error {
+    color: #f44336 !important;
+    font-weight: bold;
+}
