@@ -6,3 +6,20 @@ torch
 numpy
 pandas
 yfinance
+
+# Data visualization
+matplotlib
+plotly
+
+# Machine learning and data processing
+scikit-learn
+
+# Date handling and utilities
+python-dateutil
+tqdm
+
+# Optional: For performance improvements
+numba
+
+# Optional: For enhanced UI components
+streamlit-extras
