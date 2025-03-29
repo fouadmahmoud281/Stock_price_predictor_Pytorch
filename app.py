@@ -200,7 +200,7 @@ if stock_symbol:
         
         # Display interactive stock chart
         st.markdown("<h3 class='section-header'>📊 Historical Data Visualization</h3>", unsafe_allow_html=True)
-        stock_chart = plot_stock_data(stock_data)
+        stock_chart = plot_stock_data(stock_data, stock_symbol)  # Pass the stock symbol here
         st.plotly_chart(stock_chart, use_container_width=True)
         
         # Display some basic statistics
