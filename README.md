@@ -1,7 +1,8 @@
 # Stock Price Predictor with PyTorch and Streamlit
 
 <div align="center">
-  <img src="https://via.placeholder.com/800x400.png?text=Stock+Price+Predictor" alt="Stock Price Predictor Banner" width="800"/>
+  <img src="https://raw.githubusercontent.com/pytorch/pytorch/master/docs/source/_static/img/pytorch-logo-dark.png" alt="Stock Price Predictor Banner" height="100"/>
+  <img src="https://raw.githubusercontent.com/streamlit/docs/main/public/logo.svg" alt="Streamlit Logo" height="100"/>
   <p><em>Harness the power of AI to predict stock market trends</em></p>
 </div>
 
@@ -11,9 +12,9 @@ This project is a Streamlit-based web application that predicts stock prices usi
 <div align="center">
   <table>
     <tr>
-      <td align="center"><img src="https://via.placeholder.com/100x100.png?text=📈" width="60" alt="Chart"/></td>
-      <td align="center"><img src="https://via.placeholder.com/100x100.png?text=🧠" width="60" alt="AI"/></td>
-      <td align="center"><img src="https://via.placeholder.com/100x100.png?text=📊" width="60" alt="Analytics"/></td>
+      <td align="center"><img src="https://raw.githubusercontent.com/microsoft/fluentui-system-icons/master/assets/Graph/SVG/ic_fluent_graph_line_24_regular.svg" width="60" alt="Chart"/></td>
+      <td align="center"><img src="https://raw.githubusercontent.com/microsoft/fluentui-system-icons/master/assets/Brain/SVG/ic_fluent_brain_circuit_24_regular.svg" width="60" alt="AI"/></td>
+      <td align="center"><img src="https://raw.githubusercontent.com/microsoft/fluentui-system-icons/master/assets/Chart/SVG/ic_fluent_chart_multiple_24_regular.svg" width="60" alt="Analytics"/></td>
     </tr>
     <tr>
       <td align="center"><b>Real-time Data</b></td>
@@ -36,14 +37,17 @@ This project is a Streamlit-based web application that predicts stock prices usi
     <tr>
       <td align="center" width="33%">
         <h3>Linear Regression</h3>
+        <img src="https://raw.githubusercontent.com/microsoft/fluentui-system-icons/master/assets/Line/SVG/ic_fluent_line_24_regular.svg" width="40"/>
         <p>Simple trend-based prediction for baseline comparison</p>
       </td>
       <td align="center" width="33%">
         <h3>LSTM</h3>
+        <img src="https://raw.githubusercontent.com/microsoft/fluentui-system-icons/master/assets/Arrow%20Recycle/SVG/ic_fluent_arrow_recycle_24_regular.svg" width="40"/>
         <p>Captures complex temporal patterns in stock data</p>
       </td>
       <td align="center" width="33%">
         <h3>GRU</h3>
+        <img src="https://raw.githubusercontent.com/microsoft/fluentui-system-icons/master/assets/Circuit%20Board/SVG/ic_fluent_circuit_board_24_regular.svg" width="40"/>
         <p>A faster and simpler alternative to LSTM</p>
       </td>
     </tr>
@@ -139,7 +143,7 @@ streamlit run app.py
 ## 🖥️ User Interface
 
 <div align="center">
-  <img src="https://via.placeholder.com/800x500.png?text=Application+Screenshot" alt="Application Screenshot" width="800"/>
+  <img src="https://raw.githubusercontent.com/microsoft/fluentui-system-icons/master/assets/Window%20Dev%20Tools/SVG/ic_fluent_window_dev_tools_24_regular.svg" alt="Application Screenshot" width="60"/>
 </div>
 
 ### 🎛️ Control Panel
@@ -193,6 +197,12 @@ The main panel provides a comprehensive analysis:
       <td align="center" width="25%"><b>Step 2</b><br>Preprocessing</td>
       <td align="center" width="25%"><b>Step 3</b><br>Model Training</td>
       <td align="center" width="25%"><b>Step 4</b><br>Prediction</td>
+    </tr>
+    <tr>
+      <td><img src="https://raw.githubusercontent.com/microsoft/fluentui-system-icons/master/assets/Database/SVG/ic_fluent_database_24_regular.svg" width="40"/></td>
+      <td><img src="https://raw.githubusercontent.com/microsoft/fluentui-system-icons/master/assets/Data%20Funnel/SVG/ic_fluent_data_funnel_24_regular.svg" width="40"/></td>
+      <td><img src="https://raw.githubusercontent.com/microsoft/fluentui-system-icons/master/assets/Arrow%20Sync/SVG/ic_fluent_arrow_sync_24_regular.svg" width="40"/></td>
+      <td><img src="https://raw.githubusercontent.com/microsoft/fluentui-system-icons/master/assets/Prediction/SVG/ic_fluent_prediction_24_regular.svg" width="40"/></td>
     </tr>
     <tr>
       <td>Fetch historical data from Yahoo Finance API</td>
@@ -254,7 +264,7 @@ class LSTMModel(nn.Module):
 ## ⚠️ Disclaimer
 
 <div align="center">
-  <img src="https://via.placeholder.com/700x100.png?text=Educational+Purposes+Only" alt="Disclaimer" width="700"/>
+  <img src="https://raw.githubusercontent.com/microsoft/fluentui-system-icons/master/assets/Warning/SVG/ic_fluent_warning_24_regular.svg" width="60" alt="Warning"/>
 </div>
 
 This application is intended for **educational and demonstration purposes only**. The predictions are based on historical data and mathematical models, not financial expertise. Stock markets are influenced by numerous factors that cannot be fully captured by these models.
@@ -280,14 +290,14 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 <div align="center">
   <table>
     <tr>
-      <td align="center"><img src="https://via.placeholder.com/50x50.png?text=📧" width="30" alt="Email"/></td>
-      <td align="center"><img src="https://via.placeholder.com/50x50.png?text=🐙" width="30" alt="GitHub"/></td>
-      <td align="center"><img src="https://via.placeholder.com/50x50.png?text=🌐" width="30" alt="Website"/></td>
+      <td align="center"><img src="https://raw.githubusercontent.com/microsoft/fluentui-system-icons/master/assets/Mail/SVG/ic_fluent_mail_24_regular.svg" width="30" alt="Email"/></td>
+      <td align="center"><img src="https://raw.githubusercontent.com/microsoft/fluentui-system-icons/master/assets/Globe/SVG/ic_fluent_globe_24_regular.svg" width="30" alt="Website"/></td>
+      <td align="center"><img src="https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/github.svg" width="30" alt="GitHub"/></td>
     </tr>
     <tr>
       <td align="center"><a href="mailto:your-email@example.com">Email</a></td>
-      <td align="center"><a href="https://github.com/your-username">GitHub</a></td>
       <td align="center"><a href="https://your-website.com">Website</a></td>
+      <td align="center"><a href="https://github.com/your-username">GitHub</a></td>
     </tr>
   </table>
 </div>
@@ -297,4 +307,5 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 <div align="center">
   <p><b>Ready to predict the future of stocks?</b></p>
   <p>⭐ Star this repo if you found it useful! ⭐</p>
+  <img src="https://raw.githubusercontent.com/microsoft/fluentui-system-icons/master/assets/Star/SVG/ic_fluent_star_24_regular.svg" width="30"/>
 </div>
