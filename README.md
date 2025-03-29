@@ -42,12 +42,12 @@ This project is a Streamlit-based web application that predicts stock prices usi
       </td>
       <td align="center" width="33%">
         <h3>LSTM</h3>
-        <img src="https://raw.githubusercontent.com/microsoft/fluentui-system-icons/master/assets/Arrow%20Recycle/SVG/ic_fluent_arrow_recycle_24_regular.svg" width="40"/>
+        <img src="https://img.icons8.com/fluency/48/000000/recurring-appointment.png" width="40"/>
         <p>Captures complex temporal patterns in stock data</p>
       </td>
       <td align="center" width="33%">
         <h3>GRU</h3>
-        <img src="https://raw.githubusercontent.com/microsoft/fluentui-system-icons/master/assets/Circuit%20Board/SVG/ic_fluent_circuit_board_24_regular.svg" width="40"/>
+        <img src="https://img.shields.io/badge/GRU-🖥️-green" width="40"/>
         <p>A faster and simpler alternative to LSTM</p>
       </td>
     </tr>
