@@ -12,9 +12,9 @@ This project is a Streamlit-based web application that predicts stock prices usi
 <div align="center">
   <table>
     <tr>
-      <td align="center"><img src="https://raw.githubusercontent.com/microsoft/fluentui-system-icons/master/assets/Graph/SVG/ic_fluent_graph_line_24_regular.svg" width="60" alt="Chart"/></td>
-      <td align="center"><img src="https://raw.githubusercontent.com/microsoft/fluentui-system-icons/master/assets/Brain/SVG/ic_fluent_brain_circuit_24_regular.svg" width="60" alt="AI"/></td>
-      <td align="center"><img src="https://raw.githubusercontent.com/microsoft/fluentui-system-icons/master/assets/Chart/SVG/ic_fluent_chart_multiple_24_regular.svg" width="60" alt="Analytics"/></td>
+      <td align="center"><img src="https://img.shields.io/badge/Chart-%F0%9F%93%8A-blue" width="60" alt="Chart"/></td>
+      <td align="center"><img src="https://img.shields.io/badge/AI-%F0%9F%A7%A0-purple" width="60" alt="AI"/></td>
+      <td align="center"><img src="https://img.shields.io/badge/Analytics-%F0%9F%93%88-green" width="60" alt="Analytics"/></td>
     </tr>
     <tr>
       <td align="center"><b>Real-time Data</b></td>
