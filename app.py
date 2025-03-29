@@ -10,11 +10,11 @@ from plotly.subplots import make_subplots
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
 import datetime
-from utils.data_fetching import fetch_stock_data, get_company_info
-from utils.preprocessing import create_sequences, scale_data
-from utils.models import LinearRegressionModel, LSTMModel, GRUModel
-from utils.evaluation import evaluate_model
-from utils.plotting import plot_stock_data, plot_prediction_results
+from utils.data_fetching.data_fetching import fetch_stock_data, get_company_info
+from utils.preprocessing.preprocessing import create_sequences, scale_data
+from utils.models.models import LinearRegressionModel, LSTMModel, GRUModel
+from utils.evaluation.evaluation import evaluate_model
+from utils.plotting.plotting import plot_stock_data, plot_prediction_results
 
 # Page configuration and settings
 st.set_page_config(
