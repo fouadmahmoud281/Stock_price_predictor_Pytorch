@@ -1,93 +1,300 @@
-# 📈 Simple Stock Price Predictor
+# Stock Price Predictor with PyTorch and Streamlit
 
-A real-life application built with **PyTorch** and **Streamlit** to predict stock prices using historical data. This app demonstrates how to use PyTorch tensors for financial data analysis and prediction tasks.
+<div align="center">
+  <img src="https://via.placeholder.com/800x400.png?text=Stock+Price+Predictor" alt="Stock Price Predictor Banner" width="800"/>
+  <p><em>Harness the power of AI to predict stock market trends</em></p>
+</div>
 
-![App Preview](https://via.placeholder.com/800x400?text=Stock+Price+Predictor+Preview)
+## 🚀 Overview
+This project is a Streamlit-based web application that predicts stock prices using advanced machine learning models. By leveraging historical stock data from Yahoo Finance, it trains models to identify patterns and make predictions about future price movements.
 
-## 📋 Table of Contents
-
-1. [Overview](#overview)
-2. [Features](#features)
-3. [Installation](#installation)
-4. [Usage](#usage)
-5. [Customization](#customization)
-6. [Contributing](#contributing)
-7. [License](#license)
-
----
-
-## 🌟 Overview
-
-This application allows users to:
-- Fetch historical stock price data using the **Yahoo Finance API**.
-- Train a simple linear regression model using **PyTorch** to predict future stock prices.
-- Visualize actual vs. predicted stock prices interactively.
-- Explore model parameters and training progress.
-
-It is designed to demonstrate how PyTorch can be applied to real-world financial data analysis.
-
----
+<div align="center">
+  <table>
+    <tr>
+      <td align="center"><img src="https://via.placeholder.com/100x100.png?text=📈" width="60" alt="Chart"/></td>
+      <td align="center"><img src="https://via.placeholder.com/100x100.png?text=🧠" width="60" alt="AI"/></td>
+      <td align="center"><img src="https://via.placeholder.com/100x100.png?text=📊" width="60" alt="Analytics"/></td>
+    </tr>
+    <tr>
+      <td align="center"><b>Real-time Data</b></td>
+      <td align="center"><b>AI Models</b></td>
+      <td align="center"><b>Insights</b></td>
+    </tr>
+  </table>
+</div>
 
 ## ✨ Features
 
-- **Interactive Interface**: Built with **Streamlit** for a user-friendly experience.
-- **Data Visualization**: Compare actual vs. predicted stock prices using dynamic charts.
-- **Customizable Training**: Adjust training epochs and learning rates.
-- **Styling**: Enhanced UI with custom CSS for a polished look.
-- **Error Handling**: Gracefully handle invalid inputs or missing data.
+### 📊 Interactive Data Visualization
+- **Dynamic Candlestick Charts** with customizable time frames
+- **Technical Indicators** including moving averages, MACD, and RSI
+- **Volume Analysis** with color-coded volume bars
+
+### 🧠 Powerful ML Models
+<div align="center">
+  <table>
+    <tr>
+      <td align="center" width="33%">
+        <h3>Linear Regression</h3>
+        <p>Simple trend-based prediction for baseline comparison</p>
+      </td>
+      <td align="center" width="33%">
+        <h3>LSTM</h3>
+        <p>Captures complex temporal patterns in stock data</p>
+      </td>
+      <td align="center" width="33%">
+        <h3>GRU</h3>
+        <p>A faster and simpler alternative to LSTM</p>
+      </td>
+    </tr>
+  </table>
+</div>
+
+### ⚙️ Customizable Parameters
+- **Model Configuration**
+  - Sequence length
+  - Network architecture (hidden units, layers)
+  - Regularization (dropout rate)
+- **Training Options**
+  - Dataset split ratio
+  - Training epochs
+  - Learning rate and optimization methods
+  - Loss functions
+
+### 🔮 Future Price Prediction
+- Forecast stock prices for your chosen time horizon
+- Visualize prediction confidence intervals
+- Compare multiple models simultaneously
+
+### 📏 Comprehensive Performance Metrics
+- MSE, RMSE, MAE for error analysis
+- R² for trend accuracy assessment
+- MAPE for percentage-based evaluation
+- Visual comparison of actual vs. predicted values
+
+## 🗂️ Project Structure
+
+```
+📦 streamlit_app/
+ ┣ 📜 app.py                  # Main Streamlit application
+ ┣ 📜 styles.css              # Custom styling
+ ┣ 📂 utils/                  # Utility modules
+ ┃ ┣ 📜 __init__.py           # Package initialization
+ ┃ ┣ 📜 data_fetching.py      # Yahoo Finance data API integration
+ ┃ ┣ 📜 preprocessing.py      # Data cleaning and preparation
+ ┃ ┣ 📜 models.py             # PyTorch model definitions
+ ┃ ┣ 📜 evaluation.py         # Performance metrics
+ ┃ ┗ 📜 plotting.py           # Visualization functions
+ ┗ 📜 requirements.txt        # Dependencies
+```
+
+## 🛠️ Installation and Setup
+
+### Prerequisites
+- Python 3.8+
+- Git (optional)
+
+### Quick Start Guide
+
+<details>
+<summary><b>1. Clone the Repository</b></summary>
+
+```bash
+git clone https://github.com/your-repo/stock-price-predictor.git
+cd stock-price-predictor
+```
+</details>
+
+<details>
+<summary><b>2. Create a Virtual Environment (Recommended)</b></summary>
+
+```bash
+# Using venv
+python -m venv venv
+
+# Activate on Windows
+venv\Scripts\activate
+
+# Activate on macOS/Linux
+source venv/bin/activate
+```
+</details>
+
+<details>
+<summary><b>3. Install Dependencies</b></summary>
+
+```bash
+pip install -r requirements.txt
+```
+</details>
+
+<details>
+<summary><b>4. Launch the Application</b></summary>
+
+```bash
+streamlit run app.py
+```
+</details>
+
+## 🖥️ User Interface
+
+<div align="center">
+  <img src="https://via.placeholder.com/800x500.png?text=Application+Screenshot" alt="Application Screenshot" width="800"/>
+</div>
+
+### 🎛️ Control Panel
+
+The sidebar provides all the controls you need:
+
+1. **Data Selection**
+   - Enter any valid stock ticker (e.g., AAPL, MSFT, GOOGL)
+   - Choose predefined time ranges or custom dates
+   - Select data granularity (daily, weekly, intraday)
+
+2. **Model Configuration**
+   - Pick your prediction model (Linear Regression, LSTM, GRU)
+   - Configure network architecture and hyperparameters
+   - Set training parameters
+
+3. **Advanced Settings**
+   - Optimization methods (SGD, Adam, RMSprop, Adagrad)
+   - Batch processing options
+   - Custom prediction horizons
+   - Loss function selection
+
+### 📈 Interactive Dashboard
+
+The main panel provides a comprehensive analysis:
+
+1. **Company Overview**
+   - Key statistics and company information
+   - Current market status and recent performance
+
+2. **Historical Analysis**
+   - Interactive candlestick chart with zoom and pan
+   - Customizable technical indicators
+   - Trading volume visualization
+
+3. **Prediction Results**
+   - Model performance metrics with comparisons
+   - Actual vs predicted visualization
+   - Future price forecasting with confidence intervals
+
+4. **Backtesting**
+   - Model accuracy on historical periods
+   - Performance under different market conditions
+
+## 🔍 How It Works
+
+<div align="center">
+  <table>
+    <tr>
+      <td align="center" width="25%"><b>Step 1</b><br>Data Collection</td>
+      <td align="center" width="25%"><b>Step 2</b><br>Preprocessing</td>
+      <td align="center" width="25%"><b>Step 3</b><br>Model Training</td>
+      <td align="center" width="25%"><b>Step 4</b><br>Prediction</td>
+    </tr>
+    <tr>
+      <td>Fetch historical data from Yahoo Finance API</td>
+      <td>Scale features, create sequences, split data</td>
+      <td>Train selected model with optimized parameters</td>
+      <td>Generate predictions and visualize results</td>
+    </tr>
+  </table>
+</div>
+
+## 📋 Code Explanation
+
+### Main Application (`app.py`)
+
+The core application orchestrates:
+
+1. **UI Configuration** - Sets up the Streamlit interface
+2. **Data Pipeline** - Manages data flow from source to models
+3. **Model Management** - Handles training and inference
+4. **Visualization** - Creates interactive charts and reports
+
+### Neural Network Architecture
+
+Our LSTM and GRU implementations are carefully designed for time series forecasting:
+
+```python
+class LSTMModel(nn.Module):
+    def __init__(self, input_size, hidden_size, num_layers, output_size, dropout=0.2):
+        super(LSTMModel, self).__init__()
+        self.hidden_size = hidden_size
+        self.num_layers = num_layers
+        
+        self.lstm = nn.LSTM(input_size, hidden_size, num_layers, 
+                            batch_first=True, dropout=dropout)
+        self.fc = nn.Linear(hidden_size, output_size)
+        
+    def forward(self, x):
+        # Initialize hidden state with zeros
+        h0 = torch.zeros(self.num_layers, x.size(0), self.hidden_size).to(x.device)
+        c0 = torch.zeros(self.num_layers, x.size(0), self.hidden_size).to(x.device)
+        
+        # Forward propagate LSTM
+        out, _ = self.lstm(x, (h0, c0))
+        
+        # Decode the hidden state of the last time step
+        out = self.fc(out[:, -1, :])
+        return out
+```
+
+## 📦 Dependencies
+
+- **streamlit**: Interactive web interface
+- **torch**: Deep learning framework
+- **yfinance**: Stock data API
+- **pandas & numpy**: Data manipulation
+- **plotly & matplotlib**: Data visualization
+- **scikit-learn**: Evaluation metrics and preprocessing
+
+## ⚠️ Disclaimer
+
+<div align="center">
+  <img src="https://via.placeholder.com/700x100.png?text=Educational+Purposes+Only" alt="Disclaimer" width="700"/>
+</div>
+
+This application is intended for **educational and demonstration purposes only**. The predictions are based on historical data and mathematical models, not financial expertise. Stock markets are influenced by numerous factors that cannot be fully captured by these models.
+
+## 🤝 Contributing
+
+We welcome contributions from the community! Here's how you can help:
+
+1. **Fork** the repository
+2. **Create** a feature branch (`git checkout -b feature/amazing-feature`)
+3. **Commit** your changes (`git commit -m 'Add some amazing feature'`)
+4. **Push** to the branch (`git push origin feature/amazing-feature`)
+5. **Open** a Pull Request
+
+See our [contribution guidelines](CONTRIBUTING.md) for more details.
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 📬 Contact
+
+<div align="center">
+  <table>
+    <tr>
+      <td align="center"><img src="https://via.placeholder.com/50x50.png?text=📧" width="30" alt="Email"/></td>
+      <td align="center"><img src="https://via.placeholder.com/50x50.png?text=🐙" width="30" alt="GitHub"/></td>
+      <td align="center"><img src="https://via.placeholder.com/50x50.png?text=🌐" width="30" alt="Website"/></td>
+    </tr>
+    <tr>
+      <td align="center"><a href="mailto:your-email@example.com">Email</a></td>
+      <td align="center"><a href="https://github.com/your-username">GitHub</a></td>
+      <td align="center"><a href="https://your-website.com">Website</a></td>
+    </tr>
+  </table>
+</div>
 
 ---
 
-## 💻 Installation
-
-### Prerequisites
-
-- Python 3.8 or higher
-- Pip (Python package manager)
-
-### Steps
-
-1. Clone this repository:
-   ```bash
-   git clone https://github.com/your-username/simple-stock-price-predictor.git
-   cd simple-stock-price-predictor
-2. Install the required dependencies:
-     ```bash
-        pip install -r requirements.txt
-3. Run the app:
-     ```bash
-    streamlit run app.py
-4. Open the provided URL in your browser to interact with the app.
-
-## 🚀 Usage
-1-Enter Stock Symbol : Provide a valid stock symbol (e.g., AAPL for Apple).
-2-Set Date Range : Choose a start and end date for historical data.
-3-Train Model : The app will fetch data, train a linear regression model, and display predictions.
-4-Explore Results : View charts comparing actual vs. predicted prices and inspect model parameters.
-
-## 🎨 Customization
-1-Modify Styling
-2-Edit the styles.css file to change the app's appearance (e.g., colors, fonts, layout).
-3-Adjust Model Parameters
-4-Modify the learning rate, number of epochs, or model architecture in app.py.
-5-Add Features
-6-Extend the app with advanced models like LSTM or transformer-based architectures.
-
-## 🤝 Contributing
-We welcome contributions! To contribute:
-
-Fork this repository.
-Create a new branch (git checkout -b feature/YourFeatureName).
-Commit your changes (git commit -m "Add YourFeatureName").
-Push to the branch (git push origin feature/YourFeatureName).
-Open a pull request.
-Please ensure your code adheres to the project's style guidelines and includes appropriate documentation.
-
-## 📜 License
-This project is licensed under the MIT License . See the LICENSE file for details.
-
-## 📧 Contact
-For questions or feedback, feel free to reach out:
-
-Email: fouadmahmoud281@example.com
-GitHub: @yfouadmahmoud281
+<div align="center">
+  <p><b>Ready to predict the future of stocks?</b></p>
+  <p>⭐ Star this repo if you found it useful! ⭐</p>
+</div>
